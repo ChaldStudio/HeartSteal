@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chald Studio — Воровство Сердец</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #e94560;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #e94560;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #aaa;
+            animation: fade-in 1s ease-in;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px rgba(233, 69, 96, 0.5);
+            }
+            50% {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 25px rgba(233, 69, 96, 0.8);
+            }
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes slide-in-left {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slide-in-right {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scale-in {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: scale-in 0.6s ease-out;
+        }
+
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+
+        h2 {
+            color: #e94560;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 2px solid #e94560;
+            padding-bottom: 10px;
+        }
+
+        .rules-list {
+            list-style: none;
+        }
+
+        .rules-list li {
+            background: rgba(233, 69, 96, 0.1);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #e94560;
+            transition: all 0.3s;
+            animation: slide-in-left 0.5s ease-out;
+        }
+
+        .rules-list li:nth-child(1) { animation-delay: 0.1s; }
+        .rules-list li:nth-child(2) { animation-delay: 0.2s; }
+        .rules-list li:nth-child(3) { animation-delay: 0.3s; }
+        .rules-list li:nth-child(4) { animation-delay: 0.4s; }
+
+        .rules-list li:hover {
+            transform: translateX(10px);
+            background: rgba(233, 69, 96, 0.2);
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
+        }
+
+        .rules-list li strong {
+            color: #e94560;
+            font-size: 1.1em;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .item-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #e94560;
+            transition: all 0.3s;
+            animation: float 3s ease-in-out infinite, scale-in 0.6s ease-out;
+        }
+
+        .item-card:nth-child(1) { animation-delay: 0.1s, 0.1s; }
+        .item-card:nth-child(2) { animation-delay: 0.2s, 0.2s; }
+
+        .item-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.5);
+            border-color: #ff6b6b;
+        }
+
+        .item-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .item-card h3 {
+            color: #e94560;
+            margin-bottom: 10px;
+        }
+
+        .item-card p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .crafting-section {
+            margin-top: 20px;
+        }
+
+        .crafting-recipe {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s;
+            animation: slide-in-right 0.6s ease-out;
+        }
+
+        .crafting-recipe:nth-child(1) { animation-delay: 0.1s; }
+        .crafting-recipe:nth-child(2) { animation-delay: 0.2s; }
+
+        .crafting-recipe:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+        }
+
+        .crafting-recipe h4 {
+            color: #e94560;
+            margin-bottom: 15px;
+        }
+
+        .recipe-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .recipe-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            grid-template-rows: repeat(3, 60px);
+            gap: 5px;
+            background: #8b8b8b;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .slot {
+            background: #3a3a3a;
+            border: 2px solid #555;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+        }
+
+        .slot.filled {
+            background: #505050;
+            border-color: #777;
+        }
+
+        .arrow {
+            font-size: 3em;
+            color: #e94560;
+        }
+
+        .result {
+            text-align: center;
+        }
+
+        .result .slot {
+            margin: 0 auto;
+        }
+
+        .mechanics-info {
+            background: rgba(233, 69, 96, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            animation: scale-in 0.6s ease-out;
+        }
+
+        .mechanics-info h4 {
+            color: #e94560;
+            margin-bottom: 15px;
+        }
+
+        .mechanics-info ul {
+            list-style: none;
+        }
+
+        .mechanics-info li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .mechanics-info li:hover {
+            transform: translateX(10px);
+            color: #e94560;
+        }
+
+        .mechanics-info li::before {
+            content: "❤";
+            position: absolute;
+            left: 0;
+            color: #e94560;
+            animation: pulse-glow 1.5s ease-in-out infinite;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>❤ Chald Studio ❤</h1>
+        <p>Воровство Сердец</p>
+    </header>
+
+    <div class="container">
+        <section id="rules">
+            <h2>📜 Правила Сервера</h2>
+            <ul class="rules-list">
+                <li>
+                    <strong>❌ Читы запрещены</strong>
+                    <p>Использование любых читов, модов дающих преимущество (моды на карту, freecam, бинды) строго запрещено.</p>
+                </li>
+                <li>
+                    <strong> Багоюз запрещён</strong>
+                    <p>Использование багов сервера запрещено. О найденных багах сообщайте администрации.</p>
+                </li>
+                <li>
+                    <strong>⚠️ Дестабилизация сервера</strong>
+                    <p>Любые действия направленные на создание лагов сервера запрещены и караются перманентным баном.</p>
+                </li>
+                <li>
+                    <strong>💀 Система сердец</strong>
+                    <p>Если у игрока заканчиваются все сердца — он получает перманентный бан.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="items">
+            <h2> Предметы</h2>
+            <div class="items-grid">
+                <div class="item-card">
+                    <div class="item-icon">❤</div>
+                    <h3>Сердце</h3>
+                    <p>Добавляет 1 сердце игроку при использовании. Основная валюта и цель игры — собирайте сердца и защищайте их!</p>
+                </div>
+                <div class="item-card">
+                    <div class="item-icon">💎</div>
+                    <h3>Кристалл Возрождения</h3>
+                    <p>Можно воскресить одного любого игрока, который потерял все свои сердца. Используйте мудро — это шанс на вторую жизнь!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="crafting">
+            <h2>🔨 Крафты</h2>
+
+            <div class="crafting-section">
+                <div class="crafting-recipe">
+                    <h4>💎 Кристалл Возрождения</h4>
+                    <div class="recipe-grid">
+                        <img src="60a831a7-a4e2-491a-b32f-eb8cfed1e8fb_image.png" alt="Крафт Кристалла Возрождения" style="max-width: 100%; border-radius: 10px; border: 2px solid #e94560;">
+                    </div>
+                </div>
+
+                <div class="crafting-recipe">
+                    <h4>❤ Сердце</h4>
+                    <div class="recipe-grid">
+                        <img src="f79ff2ae-a28d-4918-b14e-c1e91caec4d0_image.png" alt="Крафт Сердца" style="max-width: 100%; border-radius: 10px; border: 2px solid #e94560;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mechanics">
+            <h2>⚙️ Механика Игры</h2>
+            <div class="mechanics-info">
+                <h4>Как играть:</h4>
+                <ul>
+                    <li>При убийстве игрока вы можете забрать его сердца</li>
+                    <li>Если у игрока не остаётся сердец — он получает перманентный бан</li>
+                    <li>Используйте Кристалл Возрождения чтобы вернуть игроков</li>
+                    <li>Крафтите сердца чтобы увеличить своё максимальное здоровье</li>
+                    <li>Защищайте свои сердца и охотьтесь за чужими!</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Chald Studio © 2026 | Воровство Сердец</p>
+        <p>Удачи в игре! ❤</p>
+        <p style="animation: pulse-glow 2s ease-in-out infinite; margin-top: 15px;">💎❤</p>
+    </footer>
+</body>
+</html>
